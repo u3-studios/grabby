@@ -1,0 +1,15 @@
+
+tasks:
+  - init: cd /workspace/tgi-workbench/public && npm install
+    command: cd /workspace/tgi-workbench/public && npm run dev
+ports:
+  - port: 8080
+    visibility: public
+    onOpen: open-preview
+  - port: 5000
+    visibility: public
+    onOpen: open-preview
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - eamodio.gitlens

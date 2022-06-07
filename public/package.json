@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "http-server": "^14.1.0",
+    "phaser": "^3.55.2"
+  },
+  "eslintConfig": {
+    "globals": {
+      "phaser": true
+    }
+  },
+  "scripts": {
+    "dev": "http-server -c-1"
+  }
+}

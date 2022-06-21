@@ -52,7 +52,7 @@ class Game extends Phaser.Scene {
 		this.scale.on('orientationchange', function(orientation) {
       if (orientation === Phaser.Scale.LANDSCAPE) {
         document.getElementById('orientation_warning').style="display:none;"
-        document.location.reload();
+        document.location.reload(true);
       } else {
         document.getElementById('orientation_warning').style="display:flex;"
       }

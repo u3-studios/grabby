@@ -32,7 +32,9 @@ bot.on("inline_query", function(iq) {
 });
 
 // make the files in the folder 'public' accessible
-server.use(express.static(path.join(__dirname, '../public')));
+server.use(express.static(path.join(__dirname, '../public'), {setHeaders: (res) => {
+    res.setHeader('cache-control', 'no-cache')
+}}));
 
 // add json support and cors
 server.use(express.json());

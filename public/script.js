@@ -45,6 +45,19 @@ class Game extends Phaser.Scene {
 
   // Create() runs when we start the game
   create(data) {
+    if (this.scale.orientation !== Phaser.Scale.LANDSCAPE) {
+      document.getElementById('orientation_warning').style="display:flex;"
+    };
+
+		this.scale.on('orientationchange', function(orientation) {
+      if (orientation === Phaser.Scale.LANDSCAPE) {
+        document.getElementById('orientation_warning').style="display:none;"
+        document.location.reload();
+      } else {
+        document.getElementById('orientation_warning').style="display:flex;"
+      }
+		});
+
     // Keys we want to get information about
     this.keys = this.input.keyboard.addKeys({
       w: Phaser.Input.Keyboard.KeyCodes.W,
@@ -128,7 +141,7 @@ class Game extends Phaser.Scene {
     this.score = 0;
     this.scoreText = this.add.text(
       spawnPoint.x, // x
-      spawnPoint.y + 125, // y
+      spawnPoint.y + 100, // y
       'Score: 0', // texts
       { font: "32px Arial Black", fill: "#ffffff" }); // Font settings
     this.scoreText.setOrigin(0.5, 0.5)
@@ -395,7 +408,7 @@ class Game extends Phaser.Scene {
   setupButtons() {
     this.left = false
     this.leftbutton = new Button(this, this.sys.game.canvas.width*0.25, this.sys.game.canvas.height*0.68, 'ArrowLeft')
-    this.leftbutton.setScale(0.20)
+    this.leftbutton.setScale(0.18)
     this.leftbutton.on('pointerdown', () => {
       this.left = true
     })
@@ -405,7 +418,7 @@ class Game extends Phaser.Scene {
 
     this.right = false
     this.rightbutton = new Button(this, this.sys.game.canvas.width*0.35, this.sys.game.canvas.height*0.68, 'ArrowRight')
-    this.rightbutton.setScale(0.20)
+    this.rightbutton.setScale(0.18)
     this.rightbutton.on('pointerdown', () => {
       this.right = true
     })
@@ -415,7 +428,7 @@ class Game extends Phaser.Scene {
 
     this.shield = false
     this.shieldbutton = new Button(this, this.sys.game.canvas.width*0.65, this.sys.game.canvas.height*0.68, 'ButtonShield')
-    this.shieldbutton.setScale(0.20)
+    this.shieldbutton.setScale(0.18)
     this.shieldbutton.on('pointerdown', () => {
       this.shield = true
     })
@@ -425,7 +438,7 @@ class Game extends Phaser.Scene {
 
     this.jump = false
     this.jumpbutton = new Button(this, this.sys.game.canvas.width*0.75, this.sys.game.canvas.height*0.68, 'ButtonJump')
-    this.jumpbutton.setScale(0.20)
+    this.jumpbutton.setScale(0.18)
     this.jumpbutton.on('pointerdown', () => {
       this.jump = true
     })
@@ -500,6 +513,10 @@ class Game extends Phaser.Scene {
       if (!this.shield && !keys.s.isDown) {
         player.play('GrabbyIdle', true)
       }
+    }
+
+    if (player.body.y > 1000) {
+      this.loseGame();
     }
 
     this.scoreText.setText("Score: " + this.score)

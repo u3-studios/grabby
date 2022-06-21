@@ -507,6 +507,7 @@ class Game extends Phaser.Scene {
   }
 
   loseGame() {
+    this.setHighScore(this.score)
     this.player.play('GrabbyDeath', true)
     const text = this.add.text(
       this.sys.game.canvas.width / 2, // width
@@ -528,6 +529,11 @@ class Game extends Phaser.Scene {
       { font: "22px Arial Black", fill: "#fff" }).setOrigin(0.5, 0.5);
     text.setScrollFactor(0)
   }
+
+  async setHighScore(score) {
+		let url = 'https://smith-engine.onrender.com/highscore'
+		await fetch(`${url}/${score}${window.location.search}`)
+	}
 }
 
 //Default Screen Size is 600 by 400

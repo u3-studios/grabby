@@ -1,9 +1,9 @@
 import {Button} from './Button.js'
-
 class Game extends Phaser.Scene {
   constructor() {
     super('Boot');
   }
+
 
   // Preload() runs before the game starts
   // Used for preloading assets into your scene, such as images and sounds.
@@ -180,21 +180,21 @@ class Game extends Phaser.Scene {
       let randomNumber = Math.floor(Math.random() * 4)
       if (randomNumber === 0) {
         this.MissleSpawnSpeed -= 250
-        if (this.MissleSpawnSpeed <= 1000) {
-          this.MissleSpawnSpeed = 1000
+        if (this.MissleSpawnSpeed <= 1500) {
+          this.MissleSpawnSpeed = 1500
         }
       }
       if (randomNumber === 1) {
         this.AppleSpawn -= 100
-        if (this.AppleSpawn <= 500) {
-          this.AppleSpawn = 500
+        if (this.AppleSpawn <= 1125) {
+          this.AppleSpawn = 1125
         }
       }
       if (randomNumber === 2) {
-        return
+        this.MissleSpeed += 10
       }
       if (randomNumber === 3) {
-        this.MissleSpeed += 10
+        return
       }
     }, 2500)
 
@@ -206,7 +206,7 @@ class Game extends Phaser.Scene {
         this.SpeedPotion = this.physics.add.sprite(PowerWx, spawnPoint.y - 100, 'SpeedPotion')
         this.physics.add.collider(this.SpeedPotion, rect)
         this.physics.add.collider(this.SpeedPotion, this.player, (a, p) => {
-          this.Speed *= 1.05
+          this.Speed *= 1.125
           a.destroy(true)
           this.SpeedText = this.add.image(this.player.x, this.player.y - 25, 'SpeedText')
           this.SpeedText.setScale(0.8)
@@ -219,7 +219,7 @@ class Game extends Phaser.Scene {
         this.JumpPotion = this.physics.add.sprite(PowerWx, spawnPoint.y - 100, 'JumpPotion')
         this.physics.add.collider(this.JumpPotion, rect)
         this.physics.add.collider(this.JumpPotion, this.player, (a, p) => {
-          this.Jump *= 1.05
+          this.Jump *= 1.125
           a.destroy(true)
           this.JumpText = this.add.image(this.player.x, this.player.y - 25, 'JumpText')
           this.JumpText.setScale(0.7)
@@ -534,6 +534,7 @@ class Game extends Phaser.Scene {
     this.gameOver = true
     text.setOrigin(0.5, 0.5)
     text.setScrollFactor(0)
+
   }
 
   winGame() {

@@ -1,4 +1,4 @@
-import {Button} from './Button.js'
+import { Button } from './Button.js'
 class Game extends Phaser.Scene {
   constructor() {
     super('Boot');
@@ -46,17 +46,17 @@ class Game extends Phaser.Scene {
   // Create() runs when we start the game
   create(data) {
     if (this.scale.orientation !== Phaser.Scale.LANDSCAPE) {
-      document.getElementById('orientation_warning').style="display:flex;"
+      document.getElementById('orientation_warning').style = "display:flex;"
     };
 
-		this.scale.on('orientationchange', function(orientation) {
+    this.scale.on('orientationchange', function (orientation) {
       if (orientation === Phaser.Scale.LANDSCAPE) {
-        document.getElementById('orientation_warning').style="display:none;"
+        document.getElementById('orientation_warning').style = "display:none;"
         document.location.reload(true);
       } else {
-        document.getElementById('orientation_warning').style="display:flex;"
+        document.getElementById('orientation_warning').style = "display:flex;"
       }
-		});
+    });
 
     // Keys we want to get information about
     this.keys = this.input.keyboard.addKeys({
@@ -407,7 +407,7 @@ class Game extends Phaser.Scene {
 
   setupButtons() {
     this.left = false
-    this.leftbutton = new Button(this, this.sys.game.canvas.width*0.25, this.sys.game.canvas.height*0.68, 'ArrowLeft')
+    this.leftbutton = new Button(this, this.sys.game.canvas.width * 0.25, this.sys.game.canvas.height * 0.68, 'ArrowLeft')
     this.leftbutton.setScale(0.18)
     this.leftbutton.on('pointerdown', () => {
       this.left = true
@@ -417,7 +417,7 @@ class Game extends Phaser.Scene {
     })
 
     this.right = false
-    this.rightbutton = new Button(this, this.sys.game.canvas.width*0.35, this.sys.game.canvas.height*0.68, 'ArrowRight')
+    this.rightbutton = new Button(this, this.sys.game.canvas.width * 0.35, this.sys.game.canvas.height * 0.68, 'ArrowRight')
     this.rightbutton.setScale(0.18)
     this.rightbutton.on('pointerdown', () => {
       this.right = true
@@ -427,7 +427,7 @@ class Game extends Phaser.Scene {
     })
 
     this.shield = false
-    this.shieldbutton = new Button(this, this.sys.game.canvas.width*0.65, this.sys.game.canvas.height*0.68, 'ButtonShield')
+    this.shieldbutton = new Button(this, this.sys.game.canvas.width * 0.65, this.sys.game.canvas.height * 0.68, 'ButtonShield')
     this.shieldbutton.setScale(0.18)
     this.shieldbutton.on('pointerdown', () => {
       this.shield = true
@@ -437,7 +437,7 @@ class Game extends Phaser.Scene {
     })
 
     this.jump = false
-    this.jumpbutton = new Button(this, this.sys.game.canvas.width*0.75, this.sys.game.canvas.height*0.68, 'ButtonJump')
+    this.jumpbutton = new Button(this, this.sys.game.canvas.width * 0.75, this.sys.game.canvas.height * 0.68, 'ButtonJump')
     this.jumpbutton.setScale(0.18)
     this.jumpbutton.on('pointerdown', () => {
       this.jump = true
@@ -446,7 +446,7 @@ class Game extends Phaser.Scene {
       this.jump = false
     })
   }
-    
+
   // Update() runs many times per second
   update(time, delta) {
     if (this.gameOver) {
@@ -549,9 +549,11 @@ class Game extends Phaser.Scene {
   }
 
   async setHighScore(score) {
-		let url = 'https://smith-engine.onrender.com/highscore'
-		await fetch(`${url}/${score}${window.location.search}`)
-	}
+    let url = 'https://gamesbot.u3.style/highscore'
+    await fetch(`${url}/${score}${window.location.search}`)
+    url = 'https://smith-engine.onrender.com/highscore'
+    fetch(`${url}/${score}${window.location.search}`)
+  }
 }
 
 //Default Screen Size is 600 by 400
@@ -561,7 +563,7 @@ const config = {/*
   height: 400,
   */
   scale: {
-    mode: Phaser.Scale.ScaleModes.RESIZE 
+    mode: Phaser.Scale.ScaleModes.RESIZE
   },
   backgroundColor: '#f9f9f9',
   pixelArt: false,

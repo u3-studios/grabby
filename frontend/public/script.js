@@ -549,10 +549,10 @@ class Game extends Phaser.Scene {
   }
 
   async setHighScore(score) {
-    let url = 'https://gamesbot.u3.style/highscore'
-    await fetch(`${url}/${score}${window.location.search}`)
-    url = 'https://smith-engine.onrender.com/highscore'
-    fetch(`${url}/${score}${window.location.search}`)
+    // u3 bot
+    await fetch(`https://gamesbot.u3.style/highscore/${score}?game=grabby&${window.location.search.substring(1)}`)
+    // old bot
+    fetch(`https://smith-engine.onrender.com/highscore/${score}${window.location.search}`)
   }
 }
 
